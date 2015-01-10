@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   devise_for :students, controllers: { registrations: "students/registrations" }
   root 'static#index'
 
+  get "mycourses" => "static#mycourses"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
