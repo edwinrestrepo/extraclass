@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :courses
+    resources :contents
+    resources :categories
+  end
+
   resources :contents
-  resources :courses
-  resources :categories
+  resources :courses, only: [:index, :show]
+
+
   devise_for :admins
   devise_for :students, controllers: { registrations: "students/registrations" }
   root 'static#index'
-
-  get "mycourses" => "static#mycourses"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
