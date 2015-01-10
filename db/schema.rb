@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150110171947) do
 
   # These are extensions that must be enabled in order to support this database
@@ -91,6 +92,9 @@ ActiveRecord::Schema.define(version: 20150110171947) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.float    "pga"
   end
 
   add_index "students", ["email"], name: "index_students_on_email", unique: true, using: :btree

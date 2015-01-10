@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   resources :courses
   resources :categories
   devise_for :admins
-  devise_for :students
-
+  devise_for :students, controllers: { registrations: "students/registrations" }
   root 'static#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
