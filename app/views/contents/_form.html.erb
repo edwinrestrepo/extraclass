@@ -15,13 +15,18 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
+
   <div class="field">
     <%= f.label :content %><br>
     <%= f.text_area :content %>
   </div>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.number_field :status %>
+    <%= f.select :status, Content.statuses.keys.to_a %>
+  </div>
+  <div class="field">
+    <%= f.label :course %>
+    <%= f.collection_select(:course_id, Course.all, :id, :name) %>
   </div>
   <div class="actions">
     <%= f.submit %>

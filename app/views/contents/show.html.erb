@@ -14,6 +14,10 @@
   <strong>Status:</strong>
   <%= @content.status %>
 </p>
+<p>
+  <strong>Course:</strong>
+  <%= @content.course.name %>
+</p>
 
 <%= link_to 'Edit', edit_content_path(@content) %> |
 <%= link_to 'Back', contents_path %>
