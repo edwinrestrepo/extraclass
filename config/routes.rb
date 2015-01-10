@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
+
   resources :contents
-
   resources :courses
-
   resources :categories
+  devise_for :admins
+  devise_for :students
 
   root 'static#index'
 
