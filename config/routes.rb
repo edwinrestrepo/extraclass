@@ -18,9 +18,8 @@ Rails.application.routes.draw do
 
   resources :courses, only: [:index, :show]
 
-
-  devise_for :admins
-  devise_for :students, controllers: { registrations: "students/registrations" }
+  devise_for :admins, path: :admin, controllers: { registrations: "admin/registrations" }
+  devise_for :students
   root 'static#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

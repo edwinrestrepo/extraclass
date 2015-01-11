@@ -20,6 +20,7 @@ class Admin::ContentsController < ApplicationController
   def create
     @content = Content.new(content_params)
     @content.save
+    redirect_to admin_contents_path
   end
 
   def update
