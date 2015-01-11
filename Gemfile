@@ -37,6 +37,8 @@ group :development, :test do
   gem 'guard-livereload', require: false
 end
 
+gem 'rails_12factor', group: :production
+
 group :test do
  gem "faker", "~> 1.1.2"
  gem "capybara", "~> 2.1.0" unless RUBY_PLATFORM =~ /linux/i
