@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Survey do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is invalid without a title" do
+    survey = FactoryGirl.build(:survey, title: nil)
+    expect(survey).to have(1).errors_on(:title)
+  end
 end

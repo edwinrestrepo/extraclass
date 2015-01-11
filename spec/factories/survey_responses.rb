@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :survey_response do
-    survey nil
-    question nil
-    answer nil
+    association :survey
+    association :question
+    association :answer
     timestamp 1
-    student nil
+    association :student
   end
 end

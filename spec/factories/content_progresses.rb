@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :content_progress do
-    student nil
-    content nil
+    student_id 1
+    content_id 2
     grade 1.5
-    course nil
+    course_id 3
   end
 end
