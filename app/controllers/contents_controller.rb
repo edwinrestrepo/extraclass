@@ -4,7 +4,8 @@ class ContentsController < ApplicationController
   layout "layout_students"
 
   def index
-    @contents = Content.all
+    @course = Course.find(params[:course_id])
+    @course_contents = @course.contents
   end
 
   def show
@@ -14,6 +15,7 @@ class ContentsController < ApplicationController
 
   private
     def set_content
+      @course = Course.find(params[:course_id])
       @content = Content.find(params[:id])
     end
 

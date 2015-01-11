@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-
-
-
-
   namespace :admin do
     resources :courses
     resources :contents
@@ -11,12 +7,11 @@ Rails.application.routes.draw do
     resources :categories
   end
 
-  resources :contents do
-    resources :survey_responses
+  resources :courses, only: :index do
+    resources :contents do
+      resources :survey_responses
+    end
   end
-
-
-  resources :courses, only: [:index, :show]
 
   devise_for :admins, path: :admin, controllers: { registrations: "admin/registrations" }
   devise_for :students

@@ -2,10 +2,8 @@
 
 <h1>Listing Contents</h1>
 
-
-
 <div class="row">
-  <% @contents.each do |content| %>
+  <% @course_contents.each do |content| %>
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <div class="caption">
@@ -15,7 +13,7 @@
         <% else %>
           <%= content.content %>
         <% end %>
-        <p><%= link_to 'Show', content, class: "btn btn-primary" %></a> 
+        <p><%= link_to 'Show', course_content_path(@course, content), class: "btn btn-primary" %></a>
         </p>
       </div>
     </div>
