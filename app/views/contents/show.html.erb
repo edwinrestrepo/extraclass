@@ -1,6 +1,3 @@
-<p id="notice"><%= notice %></p>
-
-
 <div role="tabpanel">
 
   <!-- Nav tabs -->
@@ -20,7 +17,7 @@
     			</div>
   			</div>
   			<div class="panel-body">
-					<%= @content.content %>
+					<%= raw(@content.content) %>
   			</div>
 			</div>
     </div>

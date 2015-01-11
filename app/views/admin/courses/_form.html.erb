@@ -28,10 +28,10 @@
     <%= f.select :status, Course.statuses.keys.to_a %>
   </div>
   <div class="field">
-    <%= f.label :category %>
+    <%= f.label :category %><br>
     <%= f.collection_select(:category_id, Category.all, :id, :name) %>
   </div>
-  <div class="actions">
+  <div class="actions"> <br>
     <%= f.submit %>
   </div>
 <% end %>

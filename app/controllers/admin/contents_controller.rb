@@ -19,16 +19,27 @@ class Admin::ContentsController < ApplicationController
 
   def create
     @content = Content.new(content_params)
-    @content.save
-    redirect_to admin_contents_path
+    if @content.save
+      redirect_to admin_contents_path, notice: 'Content was successfully created.'
+    else
+      render :new
+    end
   end
 
   def update
-    @content.update(content_params)
+    if @content.update(content_params)
+      redirect_to admin_contents_path, notice: 'Content was successfully updated.' 
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @content.destroy
+    if @content.destroy
+      redirect_to admin_contents_path, notice: 'Content was successfully destroyed.'
+    else
+      render :index
+    end
   end
 
   private
@@ -37,6 +48,6 @@ class Admin::ContentsController < ApplicationController
     end
 
     def content_params
-      params.require(:content).permit(:title, :content, :status)
+      params.require(:content).permit(:title, :content, :status, :course_id)
     end
 end

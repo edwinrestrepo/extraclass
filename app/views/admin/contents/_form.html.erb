@@ -1,7 +1,7 @@
 <%= form_for [:admin, @content] do |f| %>
   <% if @content.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h2>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2 ><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h3>
 
       <ul>
       <% @content.errors.full_messages.each do |message| %>
@@ -15,19 +15,22 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
-
+  <br/>
   <div class="field">
     <%= f.label :content %><br>
-    <%= f.text_area :content %>
+    <%= f.bootsy_area :content, class: "text_area_content" %>
   </div>
+  <br/>
   <div class="field">
     <%= f.label :status %><br>
     <%= f.select :status, Content.statuses.keys.to_a %>
   </div>
+  <br/>
   <div class="field">
-    <%= f.label :course %>
+    <%= f.label :course %><br>
     <%= f.collection_select(:course_id, Course.all, :id, :name) %>
   </div>
+  <br/>
   <div class="actions">
     <%= f.submit %>
   </div>

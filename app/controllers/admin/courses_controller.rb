@@ -35,8 +35,11 @@ class Admin::CoursesController < ApplicationController
   end
 
   def destroy
-    @course.destroy
-    redirect_to admin_courses_path, notice: 'Course was successfully destroyed.'
+    if @course.destroy
+      redirect_to admin_courses_path, notice: 'Course was successfully destroyed.'
+    else
+      render :index
+    end
   end
 
   private

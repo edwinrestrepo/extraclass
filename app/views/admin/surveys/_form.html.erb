@@ -24,7 +24,7 @@
     <%= f.select :status, Survey.statuses.keys.to_a %>
   </div>
   <div class="field">
-    <%= f.label :content %>
+    <%= f.label :content %> <br>
     <%= f.collection_select(:content_id, Content.all, :id, :title) %>
   </div>
 

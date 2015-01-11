@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Surveys</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -19,7 +17,7 @@
         <td><%= survey.title %></td>
         <td><%= survey.description %></td>
         <td><%= survey.status %></td>
-        <td><%= survey.content %></td>
+        <td><%= survey.content.title %></td>
         <td><%= link_to 'Show', admin_survey_path(survey) %></td>
         <td><%= link_to 'Edit', edit_admin_survey_path(survey) %></td>
         <td><%= link_to 'Destroy', admin_survey_path(survey), method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -30,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Survey', new_admin_survey_path %>
+<%= link_to 'New Survey', new_admin_survey_path, class: "btn btn-primary" %>
