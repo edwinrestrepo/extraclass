@@ -1,6 +1,7 @@
 class Admin::CategoriesController < ApplicationController
   before_action :authenticate_admin!
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  layout "layout_admins"
 
   def index
     @categories = Category.all

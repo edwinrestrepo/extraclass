@@ -1,6 +1,11 @@
 class ContentsController < ApplicationController
   before_action :authenticate_student!
   before_action :set_content, only: [:show]
+  layout "layout_students"
+
+  def index
+    @contents = Content.all
+  end
 
   def show
     @survey = Survey.where(content_id: @content.id).first

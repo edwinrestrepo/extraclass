@@ -45,7 +45,7 @@
 
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <% if student_signed_in? || admin_signed_in? %>
+          <% if student_signed_in? %>
             <li><%= link_to "Log out", destroy_student_session_path, method: :delete %></li>
           <% end %>
           <li class="dropdown">
@@ -62,11 +62,10 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
-  
+
   <div class="container">
     <%= yield %>
   </div>
-
 
 </body>
 </html>

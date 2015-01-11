@@ -3,6 +3,7 @@ class Admin::SurveysController < ApplicationController
   before_action :set_survey, only: [:show, :edit, :update, :destroy]
   #before_action :check_ownership, only: [:edit, :update, :destroy]
   #before_action :check_state, only: :show
+  layout "layout_admins"
 
   def index
     @surveys = Survey.all
