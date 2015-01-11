@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :categories
   end
 
-  resources :contents
+  resources :contents, only: [:index, :show]
   resources :courses, only: [:index, :show]
 
 

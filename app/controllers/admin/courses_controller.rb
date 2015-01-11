@@ -1,5 +1,6 @@
 class Admin::CoursesController < ApplicationController
   before_action :authenticate_admin!
+  before_action :set_course, only: [:show, :edit, :update, :destroy]
 
   def index
     @courses = Course.all
@@ -17,16 +18,25 @@ class Admin::CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
-    @course.save
-
+      if @course.save
+        redirect_to admin_courses_path, notice: 'Invoice was successfully created.'
+      else
+        format.html { render :new }
+        format.json { render json: @course.errors, status: :unprocessable_entity }
+      end
   end
 
   def update
-    @course.update(course_params)
+    if @course.update(course_params)
+      redirect_to admin_course_path, notice: 'Invoice was successfully updated.' 
+    else
+      render :edit 
+    end
   end
 
   def destroy
     @course.destroy
+    redirect_to admin_courses_path, notice: 'Course was successfully destroyed.'
   end
 
   private
