@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150111023655) do
+ActiveRecord::Schema.define(version: 20150111143327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,19 @@ ActiveRecord::Schema.define(version: 20150111023655) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "content_progresses", force: :cascade do |t|
+    t.integer  "student_id"
+    t.integer  "content_id"
+    t.float    "grade"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "content_progresses", ["content_id"], name: "index_content_progresses_on_content_id", using: :btree
+  add_index "content_progresses", ["course_id"], name: "index_content_progresses_on_course_id", using: :btree
+  add_index "content_progresses", ["student_id"], name: "index_content_progresses_on_student_id", using: :btree
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
@@ -140,6 +153,9 @@ ActiveRecord::Schema.define(version: 20150111023655) do
   add_index "surveys", ["content_id"], name: "index_surveys_on_content_id", using: :btree
 
   add_foreign_key "answers", "questions"
+  add_foreign_key "content_progresses", "contents"
+  add_foreign_key "content_progresses", "courses"
+  add_foreign_key "content_progresses", "students"
   add_foreign_key "contents", "courses"
   add_foreign_key "courses", "categories"
   add_foreign_key "courses_contents", "contents"

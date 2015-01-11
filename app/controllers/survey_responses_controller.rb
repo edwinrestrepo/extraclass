@@ -8,6 +8,11 @@ class SurveyResponsesController < ApplicationController
       SurveyResponse.create(survey_id: @survey.id, question_id: question, answer_id: answer, student_id: current_student.id, timestamp: Time.now.to_i)
     end
     #NotificationsMailer.new_survey_response_email(@survey).deliver
+
+    #get grade and create a content progress
+    grade = SurveyResponse.get_grade(@survey.id, current_student.id)
+    ContentProgress.create(student_id: current_student.id, content_id: @content.id, grade: grade, course_id: @content.course.id )
+
     render :survey_results
   end
 
