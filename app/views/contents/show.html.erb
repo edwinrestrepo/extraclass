@@ -1,23 +1,60 @@
-<p id="notice"><%= notice %></p>
+<div role="tabpanel">
 
-<p>
-  <strong>Title:</strong>
-  <%= @content.title %>
-</p>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#content" aria-controls="content" role="tab" data-toggle="tab">Contenido</a></li>
+    <li role="presentation"><a href="#survey" aria-controls="survey" role="tab" data-toggle="tab">Pruebate!</a></li>
+    <li role="presentation"><a href="#chat" aria-controls="chat" role="tab" data-toggle="tab">Chat</a></li>
+  </ul>
 
-<p>
-  <strong>Content:</strong>
-  <%= @content.content %>
-</p>
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="content">
+    	<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<div class="panel-title">
+						<h1><%= @content.title %></h1>
+    			</div>
+  			</div>
+  			<div class="panel-body">
+					<%= raw(@content.content) %>
+  			</div>
+			</div>
+    </div>
 
-<p>
-  <strong>Status:</strong>
-  <%= @content.status %>
-</p>
-<p>
-  <strong>Course:</strong>
-  <%= @content.course.name %>
-</p>
+    <div role="tabpanel" class="tab-pane" id="survey">
+    	<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<div class="panel-title">
+						<h1>Pruebate!</h1>
+    			</div>
+  			</div>
+  			<div class="panel-body">
+					<%= render 'form_responses' if @content.survey %>
+  			</div>
+			</div>
+    </div>
 
-<%= link_to 'Edit', edit_content_path(@content) %> |
-<%= link_to 'Back', contents_path %>
+    <div role="tabpanel" class="tab-pane" id="chat">
+    	<div class="panel panel-default">
+  			<div class="panel-heading">
+    			<div class="panel-title">
+						<h1>Chatea!</h1>
+    			</div>
+  			</div>
+  			<div class="panel-body">
+
+  			</div>
+			</div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+<%= link_to 'Back', course_contents_path, class: "btn btn-primary" %>
+

@@ -1,0 +1,19 @@
+<%= form_for([@course, @content, @survey_response]) do |f|%>
+
+  <% @survey.questions.each do |question|  %>
+
+    <h4><%= question.description %></h5>
+
+    <%= collection_radio_buttons(:"survey_responses", :"questions_answers[#{question.id}]", question.answers, :id, :description) do |b| %>
+      <div class="radio">
+        <%= b.label { b.radio_button(checked: true) + b.text } %>
+      </div>
+    <% end %>
+
+  <% end %>
+
+  <div class="text-center">
+      <%= f.submit "Send Survey", class: "btn btn-primary" %>
+  </div>
+
+<% end %>

@@ -1,0 +1,27 @@
+<p>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @course.description %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @course.image %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @course.status %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @course.category.name %>
+</p>
+
+<%= link_to 'Edit', edit_admin_course_path(@course), class: "btn btn-success" %> 
+<%= link_to 'Back', admin_courses_path, class: "btn btn-primary" %>
