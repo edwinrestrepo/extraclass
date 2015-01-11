@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :survey_responses
   end
 
+
   resources :courses, only: [:index, :show]
 
 
