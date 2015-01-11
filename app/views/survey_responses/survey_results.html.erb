@@ -1,0 +1,10 @@
+<div class="col-md-8 col-md-offset-2 text-center">
+  <h2>Thanks!</h2>
+  <p>We want to thank you for taking your time to take the quiz for this content, we appreciate your effort.</p>
+
+  <h1>You got <%= SurveyResponse.get_correct_answers(@survey.id, current_student.id) %> of <%=  SurveyResponse.get_questions(@survey.id).count %> answers correct</h1>
+
+  <%= link_to "Go back to course", courses_path, class: "btn btn-default" %>
+
+
+</div>
