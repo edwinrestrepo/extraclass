@@ -18,17 +18,16 @@ class Admin::CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
-      if @course.save
-        redirect_to admin_courses_path, notice: 'Invoice was successfully created.'
-      else
-        format.html { render :new }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+    if @course.save
+      redirect_to admin_courses_path, notice: 'Course was successfully created.'
+    else
+      render :new
+    end
   end
 
   def update
     if @course.update(course_params)
-      redirect_to admin_course_path, notice: 'Invoice was successfully updated.' 
+      redirect_to admin_course_path, notice: 'Course was successfully updated.' 
     else
       render :edit 
     end

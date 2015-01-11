@@ -7,7 +7,6 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def show
-    @invoice = Invoice.find(params[:id])
   end
 
   def new
@@ -19,15 +18,24 @@ class Admin::CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    @category.save
+    if @category.save
+      redirect_to admin_categories_path, notice: 'Category was successfully created.'
+    else
+      render :new
+    end
   end
 
   def update
-    @category.update(category_params)
+    if @category.update(category_params)
+      redirect_to admin_categories_path, notice: 'Category was successfully updated.' 
+    else
+      render :edit
+    end
   end
 
   def destroy
     @category.destroy
+    redirect_to admin_categories_path, notice: 'Category was successfully destroyed.'
   end
 
   private
