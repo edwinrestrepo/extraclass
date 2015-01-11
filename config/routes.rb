@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+
   namespace :admin do
     resources :courses
     resources :contents
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :admins, path: :admin, controllers: { registrations: "admin/registrations" }
-  devise_for :students
+  devise_for :students, controllers: { registrations: "registrations" }
   root 'static#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
