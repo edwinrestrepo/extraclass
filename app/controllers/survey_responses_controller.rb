@@ -1,47 +1,45 @@
 class SurveyResponsesController < ApplicationController
-  before_action :set_survey_response, only: [:show, :edit, :update, :destroy]
-
-  respond_to :html
+  before_action :authenticate_student!
+  before_action :set_survey
+  #before_action :check_ownership, only: :index
+  #before_action :protect_from_owner, only: :create
 
   def index
-    @survey_responses = SurveyResponse.all
-    respond_with(@survey_responses)
-  end
-
-  def show
-    respond_with(@survey_response)
-  end
-
-  def new
-    @survey_response = SurveyResponse.new
-    respond_with(@survey_response)
-  end
-
-  def edit
+    @survey_responses = SurveyResponse.get_questions(@survey)
+    @survey_responders = SurveyResponse.get_responders(@survey)
+    @responses_number = SurveyResponse.responses_number(@survey)
   end
 
   def create
-    @survey_response = SurveyResponse.new(survey_response_params)
-    @survey_response.save
-    respond_with(@survey_response)
+    answers = params[:survey_responses][:questions_answers]
+    answers.each do |question, answer|
+      SurveyResponse.create(survey_id: @survey.id, question_id: question, answer_id: answer, student_id: current_student.id, timestamp: Time.now.to_i)
+    end
+    #NotificationsMailer.new_survey_response_email(@survey).deliver
+
+    #@grade = SurveyResponse.get_grade(@survey.id, current_student.id)
+    #render :thanks
   end
 
-  def update
-    @survey_response.update(survey_response_params)
-    respond_with(@survey_response)
-  end
-
-  def destroy
-    @survey_response.destroy
-    respond_with(@survey_response)
+  def thanks
   end
 
   private
-    def set_survey_response
-      @survey_response = SurveyResponse.find(params[:id])
+
+    def set_survey
+      @content = Content.find(params[:content_id])
+      @survey = @content.survey
     end
 
     def survey_response_params
-      params.require(:survey_response).permit(:survey_id, :question_id, :answer_id, :timestamp, :student_id)
+      params.require(:survey_responses).permit(:questions_answers)
+    end
+
+    def protect_from_owner
+      redirect_to surveys_url, notice: "You're not allowed to send responses to this survey" if current_user.author?(@survey)
+    end
+
+    def check_ownership
+      redirect_to surveys_url, notice: "You're not allowed to see the responses of this survey" unless current_user.author?(@survey)
     end
 end

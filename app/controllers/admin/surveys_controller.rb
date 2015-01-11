@@ -24,10 +24,10 @@ class Admin::SurveysController < ApplicationController
   end
 
   def create
-    @survey = current_user.surveys.new(survey_params)
+    @survey = Survey.new(survey_params)
 
     if @survey.save
-      redirect_to @survey, notice: 'Survey was successfully created.'
+      redirect_to admin_survey_path(@survey), notice: 'Survey was successfully created.'
     else
       render :new
     end
@@ -37,7 +37,7 @@ class Admin::SurveysController < ApplicationController
   def update
 
     if @survey.update(survey_params)
-      redirect_to @survey, notice: 'Survey was successfully updated.'
+      redirect_to admin_survey_path(@survey), notice: 'Survey was successfully updated.'
     else
       render :edit
     end
@@ -56,7 +56,7 @@ class Admin::SurveysController < ApplicationController
 
 
     def survey_params
-      params.require(:survey).permit(:title, :logo, :description, :state, questions_attributes: [:id, :description, :_destroy, answers_attributes: [:id, :description, :_destroy, :correct]])
+      params.require(:survey).permit(:title, :logo, :description, :content_id, :status, questions_attributes: [:id, :description, :_destroy, answers_attributes: [:id, :description, :_destroy, :correct]])
     end
 
     def check_ownership

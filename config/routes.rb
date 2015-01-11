@@ -2,16 +2,19 @@ Rails.application.routes.draw do
 
 
 
-  resources :survey_responses
+
 
   namespace :admin do
     resources :courses
     resources :contents
-    resources :categories
     resources :surveys
+    resources :categories
   end
 
-  resources :contents, only: [:index, :show]
+  resources :contents do
+    resources :survey_responses
+  end
+
   resources :courses, only: [:index, :show]
 
 
